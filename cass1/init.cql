@@ -1,16 +1,16 @@
-CREATE KEYSPACE p 
+CREATE KEYSPACE ks1 
 WITH replication = {
   'class': 'SimpleStrategy',
   'replication_factor' : 2
 };
 
-CREATE KEYSPACE r 
+CREATE KEYSPACE ks2 
 WITH replication = {
   'class': 'SimpleStrategy',
   'replication_factor' : 3
 };
 
-CREATE TABLE p.paciente (
+CREATE TABLE ks1.paciente (
   id int, 
   nombre text, 
   apellido text, 
@@ -19,7 +19,8 @@ CREATE TABLE p.paciente (
   fecha_nacimiento text, 
   PRIMARY KEY(id)
 );
-CREATE TABLE r.recetas (
+
+CREATE TABLE ks2.recetas (
   id int, 
   id_paciente int, 
   comentario text, 

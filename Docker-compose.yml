@@ -21,6 +21,8 @@ services:
       - CASSANDRA_PASSWORD=pass123
       - MAX_HEAP_SIZE=512M
       - HEAP_NEWSIZE=100M
+    depends_on:
+      - cass1
   cass3:
     image: bitnami/cassandra:latest
     environment:
@@ -30,6 +32,8 @@ services:
       - CASSANDRA_PASSWORD=pass123
       - MAX_HEAP_SIZE=512M
       - HEAP_NEWSIZE=100M
+    depends_on:
+      - cass1
   api:
     build:
       context: ./Api
