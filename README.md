@@ -1,14 +1,13 @@
-# Tarea 2: Sistemas Distribuidos
+# Tarea 3: Sistemas Distribuidos
 
 Integrantes del grupo: Guillermo Martínez, Benjamín Ojeda
 
-Tecnologías utilizadas Nodejs y Kafka.
+Tecnologías utilizadas Nodejs y Cassandra.
 
 Modulos de Node utilizados:
 
-* express -> utilizado para la api
-* Kafkajs -> librería para implementar kafka
-* fs -> leer y escribir archivos JSON
+* express -> 
+* Cassandra-drivers -> 
 
 ## Instrucciones de ejecución
 
