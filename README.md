@@ -6,18 +6,29 @@ Tecnologías utilizadas Nodejs y Cassandra.
 
 Modulos de Node utilizados:
 
-* express -> 
-* Cassandra-drivers -> 
+* express -> Para levantar el servicio de la api
+* Cassandra-drivers -> Para realizar la conexión de la base de datos
 
 ## Instrucciones de ejecución
 
-* Clonar el repositorio de github: https://github.com/Benja-Suprinha/tarea1
+* Clonar el repositorio de github: https://github.com/Benja-Suprinha/Tarea3
 * Luego de clonarlo, se deben ingresar los siguientes comandos:
 ```shell
 docker-compose build
 docker-compose up
 ```
 Con esto se levantan los servicios y podemos utilizar la app en el localhost.
+
+Dentro del local host se puede acceder a lo siguiente:
+
+* localhost:3000/recetas -> se "ven" todas las recetas creadas (en formato json).
+* localhost:3000/pacientes-> se "ven" todas las pacientes creadas (en formato json).
+* localhost:3000/create -> recibe un json por el metodo post con los parametros {nombre, apellido, rut, mail, fecha de nacimiento, comentario, farmacos, doctor}.
+
+En esta sección de create se tiene en cuenta que, si el paciente no exite, se crea al paciente y la receta, pero si el paciente existe se crea solo la receta.
+
+* localhost:3000/edit -> recibe un json por el metodo post con los parametros {id, comentario, farmacos, doctor} -> verifica si existe la receta y si existe la edita.
+* localhost:3000/delete -> recibe un json por el metodo post con el parametro {id} -> verifica si existe la receta y si existe la borra.
 
 ## Preguntas
 
@@ -60,3 +71,17 @@ La ventaja que tienen uno sobre el otro está dada por su propia definición, Si
 * ¿Cuál utilizaría usted para en el caso actual y por qué? Justifique apropiadamente su respuesta.
 
 Para el caso actual utilizariamos el SympleStrategy, porque se tiene un cluster con un único datacenter que  posee 3 nodos, y se busca generar réplicas entre los nodos
+
+### Pregunta 3
+
+* Teniendo en cuenta el contexto del problema ¿Usted cree que la solución propuesta es la correcta?
+
+Si creemos que la solución propuesta es la correcta, porque se logra ejecutar lo solicitado por el problema usando las herramientas distribuidas que posee Cassandra, como generar una base de dato escalable y distribuida gracias a la replicación que existe entre los nodos.
+
+* ¿Qué ocurre cuando se quiere escalar en la solución? 
+
+Cassandra tiene la posibilidad de escalar horizontalmente y de forma lineal, ya que se pueden aumentar los nodos y los data centers, pero para esto se requiere del uso de otra estrategia, la NetworkTopologyStrategy y así adecuarse a los grandes números de consultas que se puedan realizar.
+
+* ¿Qué mejoras implementaría? Oriente su respuesta hacia el Sharding (la replicación/distribución de los datos) y comente una estrategia que podría seguir para ordenar los datos.
+
+Algunas mejoras que implementaría en la solución sería agregar mas nodos, para que la información esté más distribuida y generar un poco de redudancia, pero garantizando una tolerancia a fallos, también se podría considerar el hecho de agregar mas data centers, cambiando la estrategia a NetworkTopologyStrategy y así balancear aún más la carga.
